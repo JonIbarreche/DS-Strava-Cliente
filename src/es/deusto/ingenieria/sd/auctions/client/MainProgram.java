@@ -1,11 +1,13 @@
 package es.deusto.ingenieria.sd.auctions.client;
 
+import java.awt.EventQueue;
 import java.util.List;
 
 import es.deusto.ingenieria.sd.auctions.client.controller.BidController;
 import es.deusto.ingenieria.sd.auctions.client.controller.LoginController;
 import es.deusto.ingenieria.sd.auctions.client.gui.BidWindow;
 import es.deusto.ingenieria.sd.auctions.client.gui.LoginDialog;
+import es.deusto.ingenieria.sd.auctions.client.gui.LoginWindow;
 import es.deusto.ingenieria.sd.auctions.client.remote.ServiceLocator;
 import es.deusto.ingenieria.sd.auctions.server.data.dto.ArticleDTO;
 import es.deusto.ingenieria.sd.auctions.server.data.dto.CategoryDTO;
@@ -13,6 +15,20 @@ import es.deusto.ingenieria.sd.auctions.server.data.dto.CategoryDTO;
 public class MainProgram {
 
 	public static void main(String[] args) {	
+		/**
+		 * Launch the application.
+		 */
+		
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						LoginWindow frame = new LoginWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		ServiceLocator serviceLocator = new ServiceLocator();
 		
 		//args[0] = RMIRegistry IP
@@ -24,6 +40,7 @@ public class MainProgram {
 		LoginDialog loginDialog = new LoginDialog(loginController);			
 		BidController bidController = new BidController(serviceLocator);			
 		BidWindow bidWindow = new BidWindow(bidController);
+		
 		
 		//Login
 		loginDialog.login();		
@@ -41,5 +58,8 @@ public class MainProgram {
 		articles = bidWindow.getArticles(categories.get(0).getName());
 		//Logout
 		loginDialog.logout();
+		
+		
+		
 	}
 }
