@@ -33,7 +33,7 @@ public class VentanaSesion extends JFrame{
 		panel.setLayout(new GridLayout(6,1));
 		
 		menuBar = new JMenuBar();
-		menu = new JMenu("Más opciones");
+		menu = new JMenu("Mï¿½s opciones");
 		
 		menuItem = new JMenuItem("Log out");
 		menuItem.addActionListener(new ActionListener() {
@@ -49,7 +49,7 @@ public class VentanaSesion extends JFrame{
 		panelTitulo= new JPanel();
 		panelTitulo.setLayout(new FlowLayout());
 		
-		labelTitulo = new JLabel("Titulo de la Sesión:");
+		labelTitulo = new JLabel("Titulo de la Sesiï¿½n:");
 		textoTitulo = new JTextField();
 		textoTitulo.setPreferredSize(new Dimension(200, 25));
 		
@@ -73,7 +73,7 @@ public class VentanaSesion extends JFrame{
 		panelDuracion = new JPanel();
 		panelDuracion .setLayout(new FlowLayout());
 		
-		labelDuracion = new JLabel("Duracion de la Sesión:");
+		labelDuracion = new JLabel("Duracion de la Sesiï¿½n:");
 		textoDuracion = new JTextField();
 		textoDuracion.setPreferredSize(new Dimension(200, 25));
 		
@@ -95,6 +95,7 @@ public class VentanaSesion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaPrincipal k = new VentanaPrincipal();
+				k.setVisible(true);
 				dispose();
 			}
 		});

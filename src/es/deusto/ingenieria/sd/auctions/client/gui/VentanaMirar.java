@@ -46,7 +46,7 @@ public class VentanaMirar extends JFrame{
 		panel.setLayout(new GridLayout(2,1));
 		
 		menuBar = new JMenuBar();
-		menu = new JMenu("Más opciones");
+		menu = new JMenu("Mï¿½s opciones");
 		
 		menuItem = new JMenuItem("Log out");
 		menuItem.addActionListener(new ActionListener() {
@@ -103,7 +103,7 @@ public class VentanaMirar extends JFrame{
 		
 		setVisible(true);
 		pack();
-		setSize(500,350);
+		setSize(628,316);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 }

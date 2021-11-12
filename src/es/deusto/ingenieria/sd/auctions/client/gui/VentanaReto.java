@@ -34,7 +34,7 @@ public class VentanaReto extends JFrame {
 		panel.setLayout(new GridLayout(6,1));
 		
 		menuBar = new JMenuBar();
-		menu = new JMenu("Más opciones");
+		menu = new JMenu("Mï¿½s opciones");
 		
 		menuItem = new JMenuItem("Log out");
 		menuItem.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class VentanaReto extends JFrame {
 		if(tod == "Distancia") {
 			labelTod = new JLabel("Distancia a Recorrer:");
 		} else if(tod == "Tiempo") {
-			labelTod = new JLabel("Tiempo Límite (h):");
+			labelTod = new JLabel("Tiempo Lï¿½mite (h):");
 		}
 		textoTod = new JTextField();
 		textoTod.setPreferredSize(new Dimension(200, 25));
@@ -105,6 +105,7 @@ public class VentanaReto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaPrincipal k = new VentanaPrincipal();
+				k.setVisible(true);
 				dispose();
 			}
 		});

@@ -57,7 +57,7 @@ public class VentanaRegistro extends JFrame {
 		panelPass = new JPanel();
 		panelPass.setLayout(new FlowLayout());
 		
-		labelPass = new JLabel("Contraseña:");
+		labelPass = new JLabel("Contraseï¿½a:");
 		textoPass = new JTextField();
 		textoPass.setPreferredSize(new Dimension(200, 25));
 		
@@ -81,7 +81,7 @@ public class VentanaRegistro extends JFrame {
 		panelMax = new JPanel();
 		panelMax.setLayout(new FlowLayout());
 		
-		labelMax = new JLabel("Frecuencia cardíaca máx:");
+		labelMax = new JLabel("Frecuencia cardï¿½aca mï¿½x:");
 		textoMax = new JTextField();
 		textoMax.setPreferredSize(new Dimension(200, 25));
 		
@@ -89,7 +89,7 @@ public class VentanaRegistro extends JFrame {
 		panelRep = new JPanel();
 		panelRep.setLayout(new FlowLayout());
 		
-		labelRep = new JLabel("Frecuencia cardíaca máx:");
+		labelRep = new JLabel("Frecuencia cardï¿½aca mï¿½x:");
 		textoRep = new JTextField();
 		textoRep.setPreferredSize(new Dimension(200, 25));
 		
@@ -102,7 +102,9 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+				LoginWindow lw = new LoginWindow();
+				lw.setVisible(true);
+				dispose();
 				
 			}
 		});
