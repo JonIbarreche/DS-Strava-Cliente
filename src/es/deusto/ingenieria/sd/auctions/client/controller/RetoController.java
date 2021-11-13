@@ -25,7 +25,7 @@ public class RetoController {
 		}
 	}
 	
-	public List<Reto> getRetos() {
+	public List<RetoDTO> getRetos() {
 		try {
 			return this.serviceLocator.getService().getRetos();
 		} catch (RemoteException e) {
