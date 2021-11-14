@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.auctions.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.auctions.client.gui.*;
 
 public class VentanaRegistro extends JFrame {
@@ -20,7 +21,7 @@ public class VentanaRegistro extends JFrame {
 	protected JButton botonRegistro,botonVolver;
 	
 	
-	public VentanaRegistro(String plataforma) {
+	public VentanaRegistro(String plataforma, RegistroController registroController) {
 		
 		cp = this.getContentPane();
 		this.setTitle("Registro");

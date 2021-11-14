@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.auctions.client.controller.RetoController;
 import es.deusto.ingenieria.sd.auctions.client.gui.*;
 
 public class VentanaReto extends JFrame {
@@ -25,7 +26,7 @@ public class VentanaReto extends JFrame {
 	protected JMenuItem menuItem;
 	
 	
-	public VentanaReto(String tod) {
+	public VentanaReto(String tod, RetoController retoController) {
 		
 		cp = this.getContentPane();
 		this.setTitle("CrearReto");

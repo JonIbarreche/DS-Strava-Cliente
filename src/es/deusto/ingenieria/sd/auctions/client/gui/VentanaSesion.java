@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.auctions.client.controller.SesionController;
 import es.deusto.ingenieria.sd.auctions.client.gui.*;
 
 public class VentanaSesion extends JFrame{
@@ -24,7 +25,7 @@ public class VentanaSesion extends JFrame{
 	protected JMenuItem menuItem;
 	
 	
-	public VentanaSesion() {
+	public VentanaSesion(SesionController sesionController) {
 		
 		cp = this.getContentPane();
 		this.setTitle("CrearReto");

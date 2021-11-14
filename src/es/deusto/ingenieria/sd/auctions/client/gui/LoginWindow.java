@@ -12,6 +12,9 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import es.deusto.ingenieria.sd.auctions.client.controller.LoginController;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -21,6 +24,8 @@ public class LoginWindow extends JFrame {
 	private JTextField txtMail;
 	private JTextField txtPassword;
 
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -39,8 +44,9 @@ public class LoginWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param loginController 
 	 */
-	public LoginWindow() {
+	public LoginWindow(LoginController loginController) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 610, 377);
 		contentPane = new JPanel();
