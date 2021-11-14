@@ -5,13 +5,17 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.auctions.client.controller.BidController;
 import es.deusto.ingenieria.sd.auctions.client.controller.RetoController;
 import es.deusto.ingenieria.sd.auctions.client.gui.*;
 
 public class VentanaReto extends JFrame {
+	
+	private RetoController controller;
 	
 	protected JPanel panel,panelElige,panelNomReto,panelFechaIni,panelFechaFin,panelTod,panelDeporte,panelBotones;
 	protected Container cp;
@@ -197,5 +201,21 @@ public class VentanaReto extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	public List<RetoDTO> getRetos(String category) { 		
+		System.out.println(" - Getting articles of the category '" + category + "' ...");
+		
+		List<RetoDTO> retos = this.controller.getReto(category);
+	
+		for (RetoDTO reto : retos) {
+			System.out.println("\t* " + reto.getNombreReto() + " - " + 
+		                                 reto.getFechaIni() + " - " + 
+		                                 reto.getFechaFin() + "/" +
+		                                 reto.getDistancia() + " - (" + 
+		                                 reto.getTiempo() + " - " +
+		                                 reto.getDeporte();
+		}
+			
+		return retos;		
+	}
 
 }

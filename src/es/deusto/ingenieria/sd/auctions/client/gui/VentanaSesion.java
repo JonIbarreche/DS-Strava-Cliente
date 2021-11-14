@@ -6,14 +6,18 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.List;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.auctions.client.controller.RetoController;
 import es.deusto.ingenieria.sd.auctions.client.controller.SesionController;
 import es.deusto.ingenieria.sd.auctions.client.gui.*;
 
 public class VentanaSesion extends JFrame{
+	
+	private SesionController controller;
+	
 	protected JPanel panel,panelElige,panelTitulo,panelFechaIni,panelHoraIni,panelDuracion,panelDistancia,panelBotones;
 	protected Container cp;
 	protected JLabel labelElige,labelTitulo,labelFechaIni,labelHoraIni,labelDuracion,labelDistancia;
@@ -167,4 +171,19 @@ public class VentanaSesion extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	public List<SesionDTO> getSesiones() { 		
+		System.out.println(" - Getting sesiones...");
+		
+		List<SesionDTO> sesiones = this.controller.getSesiones();
+	
+		for (SesionDTO sesion : sesiones) {
+			System.out.println("\t* " + sesion.getTitulo() + " - " + 
+		                                 sesion.getFechaIni() + " - " + 
+		                                 sesion.getHoraIni() + "/" +
+		                                 sesion.getDistancia() + " - (" + 
+		                                 sesion.getDuracion());
+		}
+			
+		return sesiones;		
+	}
 }
