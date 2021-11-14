@@ -18,6 +18,8 @@ import es.deusto.ingenieria.sd.auctions.client.gui.VentanaSesion;
 import es.deusto.ingenieria.sd.auctions.client.remote.ServiceLocator;
 import es.deusto.ingenieria.sd.auctions.server.data.dto.ArticleDTO;
 import es.deusto.ingenieria.sd.auctions.server.data.dto.CategoryDTO;
+import es.deusto.ingenieria.sd.auctions.server.data.dto.RetoDTO;
+import es.deusto.ingenieria.sd.auctions.server.data.dto.SesionDTO;
 
 public class MainProgram {
 
@@ -30,7 +32,7 @@ public class MainProgram {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						LoginWindow frame = new LoginWindow();
+						LoginWindow frame = new LoginWindow(null);
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
