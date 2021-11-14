@@ -201,10 +201,10 @@ public class VentanaReto extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	public List<RetoDTO> getRetos(String category) { 		
-		System.out.println(" - Getting articles of the category '" + category + "' ...");
+	public List<RetoDTO> getRetos() { 		
+		System.out.println(" - Getting retos...");
 		
-		List<RetoDTO> retos = this.controller.getReto(category);
+		List<RetoDTO> retos = this.controller.getRetos();
 	
 		for (RetoDTO reto : retos) {
 			System.out.println("\t* " + reto.getNombreReto() + " - " + 
