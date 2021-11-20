@@ -12,6 +12,7 @@ import java.util.Iterator;
 import javax.swing.*;
 
 import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
 
 
 public class VentanaMirar extends JFrame{
@@ -84,6 +85,7 @@ public class VentanaMirar extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaPrincipal k = new VentanaPrincipal();
+				k.setVisible(true);
 				dispose();
 			}
 		});

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
 
 public class VentanaPrincipal extends JFrame{
 	protected Container cp;

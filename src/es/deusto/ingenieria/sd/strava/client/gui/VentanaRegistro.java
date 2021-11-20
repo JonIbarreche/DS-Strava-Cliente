@@ -11,6 +11,8 @@ import javax.swing.*;
 
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.server.data.domain.PasswordUsuario;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Usuario;
 
 public class VentanaRegistro extends JFrame {
 	
@@ -103,7 +105,7 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				LoginWindow lw = new LoginWindow();
+				LoginWindow lw = new LoginWindow(null);
 				lw.setVisible(true);
 				dispose();
 				
@@ -116,8 +118,14 @@ public class VentanaRegistro extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Usuario u = new Usuario(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
-						textoPass.getText(), Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
+						Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
 						Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()));
+				
+				PasswordUsuario pu = new PasswordUsuario(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+						Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
+						Integer.parseInt(textoAltura.getText()), 
+						Integer.parseInt(textoMax.getText()), textoPass.getText());
+				
 				VentanaPrincipal i = new VentanaPrincipal();
 				
 			}

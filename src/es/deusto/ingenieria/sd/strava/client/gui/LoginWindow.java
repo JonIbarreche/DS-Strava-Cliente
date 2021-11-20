@@ -33,7 +33,7 @@ public class LoginWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginWindow frame = new LoginWindow();
+					LoginWindow frame = new LoginWindow(null);//add logincontroller
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

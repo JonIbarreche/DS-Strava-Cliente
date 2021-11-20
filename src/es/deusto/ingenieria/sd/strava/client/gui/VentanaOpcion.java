@@ -37,7 +37,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("mail");
+				VentanaRegistro i = new VentanaRegistro("mail", null);
 				
 				dispose();		   
 				
@@ -50,7 +50,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("facebook");
+				VentanaRegistro i = new VentanaRegistro("facebook", null);
 				dispose();
 			}
 			
@@ -61,7 +61,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("google");
+				VentanaRegistro i = new VentanaRegistro("google", null);
 				dispose();
 				
 			}

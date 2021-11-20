@@ -13,6 +13,8 @@ import javax.swing.*;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Sesion;
+import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class VentanaSesion extends JFrame{
 	
@@ -125,7 +127,7 @@ public class VentanaSesion extends JFrame{
 				textoDuracion.setText("");
 				
 				creado = new JOptionPane();
-				creado.showMessageDialog(null, "Nueva Sesion Creada Correctamente");
+				JOptionPane.showMessageDialog(null, "Nueva Sesion Creada Correctamente");
 				
 
 			}

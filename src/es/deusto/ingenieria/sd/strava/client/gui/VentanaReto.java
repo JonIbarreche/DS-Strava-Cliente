@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.swing.*;
 
-import es.deusto.ingenieria.sd.auctions.client.controller.BidController;
-import es.deusto.ingenieria.sd.auctions.client.controller.RetoController;
-import es.deusto.ingenieria.sd.auctions.client.gui.*;
+
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
+import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 public class VentanaReto extends JFrame {
 	
