@@ -144,7 +144,8 @@ public class VentanaReto extends JFrame {
 					tiempo = Integer.parseInt(textoTod.getText());
 				}
 				
-				Reto nuevoReto = new Reto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);
+				RetoDTO nuevoReto = controller.crearReto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);
+				
 				
 				textoNomReto.setText("");
 				textoFechaIni.setText("");
@@ -214,7 +215,7 @@ public class VentanaReto extends JFrame {
 		                                 reto.getFechaFin() + "/" +
 		                                 reto.getDistancia() + " - (" + 
 		                                 reto.getTiempo() + " - " +
-		                                 reto.getDeporte();
+		                                 reto.getDeporte());
 		}
 			
 		return retos;		

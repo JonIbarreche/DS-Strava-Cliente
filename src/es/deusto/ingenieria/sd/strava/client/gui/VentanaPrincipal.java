@@ -5,11 +5,15 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.*;
 
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.client.gui.*;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
+import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 public class VentanaPrincipal extends JFrame{
 	protected Container cp;
@@ -20,12 +24,11 @@ public class VentanaPrincipal extends JFrame{
 	protected JMenuItem menuItem;
 	protected JOptionPane opcionCreacion;
 	
+	private RetoController controllerReto;
+	private SesionController controllerSesion;
+	
 	public VentanaPrincipal() {
-		Reto r1 = new Reto("a", "b", "c", 0, 1, "d");
-		Reto r2 = new Reto("a", "b", "c", 1, 0, "d");
-		Reto r3 = new Reto("a", "b", "c", 1, 1, "d");
-		
-		Reto[] lista = {r1, r2, r3};
+		List<RetoDTO> lista = controllerReto.getRetos();
 		
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -70,9 +73,9 @@ public class VentanaPrincipal extends JFrame{
 				if (seleccion != -1) {
 					seleccion += 1;
 					if (seleccion == 1) {
-						VentanaReto i = new VentanaReto("Distancia");
+						VentanaReto i = new VentanaReto("Distancia", controllerReto);
 					} else if (seleccion == 2) {
-						VentanaReto i = new VentanaReto("Tiempo");
+						VentanaReto i = new VentanaReto("Tiempo", controllerReto);
 					}
 				}
 				dispose();		   
@@ -97,7 +100,7 @@ public class VentanaPrincipal extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSesion j = new VentanaSesion();
+				VentanaSesion j = new VentanaSesion(controllerSesion);
 				dispose();
 				
 			}

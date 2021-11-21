@@ -9,5 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/commons-codec-1.15.jar"/>
 	<classpathentry kind="src" path="/DS-Strava-Servidor"/>
+	<classpathentry kind="lib" path="lib/strava.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

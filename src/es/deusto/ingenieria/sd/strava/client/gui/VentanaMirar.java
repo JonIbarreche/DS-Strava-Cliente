@@ -8,11 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.*;
 
 import es.deusto.ingenieria.sd.strava.client.gui.*;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
+import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 
 public class VentanaMirar extends JFrame{
@@ -25,7 +27,7 @@ public class VentanaMirar extends JFrame{
 	protected JTable tabla;
 	protected JScrollPane scrpTabla;
 
-	public String[] prepararParaLista(Reto r) {
+	public String[] prepararParaLista(RetoDTO r) {
 		if(r.getTiempo() == 0) {
 			String[] preparado = {r.getNombreReto(), r.getFechaIni(), r.getFechaFin(), String.valueOf(r.getDistancia()), "null", r.getDeporte()};
 			return preparado;
@@ -39,7 +41,7 @@ public class VentanaMirar extends JFrame{
 
 	}
 	
-	public VentanaMirar(Reto[] lista) {
+	public VentanaMirar(List<RetoDTO> lista) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
 		
@@ -63,8 +65,8 @@ public class VentanaMirar extends JFrame{
 		
 		String[] nombresColumna = {"Nombre", "F. Inicio", "F. Fin", "Distancia", "Tiempo", "Deporte"};
 		String[][] retos = new String[100][100];
-		for (int i = 0; i < lista.length; i++) {
-			String[] preparado = prepararParaLista(lista[i]);
+		for (int i = 0; i < lista.size(); i++) {
+			String[] preparado = prepararParaLista(lista.get(i));
 			retos[i] = preparado;
 		}
 		

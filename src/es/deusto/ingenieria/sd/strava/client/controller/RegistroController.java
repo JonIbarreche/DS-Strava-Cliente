@@ -4,30 +4,31 @@ import java.rmi.RemoteException;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Usuario;
+import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 
 public class RegistroController {
 	
 	private ServiceLocator serviceLocator;
 	
-	private Usuario u;
+	private UsuarioDTO u;
 	
 	public RegistroController(ServiceLocator serviceLocator) {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public boolean registro(String email, String nombre, String fecha, String contraseña, int peso, int altura, int max,
-			int rep) {
-		try {
-			this.u = this.serviceLocator.getService(email, nombre, fecha, contraseña, peso, altura, max, rep);	
-			return true;
-		} catch (RemoteException e) {
+	public UsuarioDTO registro(String email, String nombre, String fecha, int peso, int altura, int max,
+			int rep, String contrasena) {
+	    try {
+			this.u = this.serviceLocator.getService().crearUsuario(email, nombre, fecha, peso, altura, max, rep, contrasena);
+			return u;
+		} catch (Exception e) {
 			System.out.println("# Error en el registro: " + e);
-			return false;
+			return null;
 		}
 	}
 	
-	public Usuario getUsuario() {
+	public UsuarioDTO getUsuario() {
 		return u;
 	}
 }

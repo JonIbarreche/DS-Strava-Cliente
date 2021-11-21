@@ -13,8 +13,10 @@ import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.gui.*;
 import es.deusto.ingenieria.sd.strava.server.data.domain.PasswordUsuario;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Usuario;
+import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 public class VentanaRegistro extends JFrame {
+	private RegistroController controller;
 	
 	protected JPanel panel,panelEmail,panelNombre,panelFecha,panelPass,panelPeso,panelAltura,panelMax,panelRep,panelBotones;
 	protected Container cp;
@@ -117,17 +119,20 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Usuario u = new Usuario(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+				if (plataforma == "facebook" || plataforma == "google") {
+				UsuarioDTO u = controller.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 						Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
-						Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()));
-				
-				PasswordUsuario pu = new PasswordUsuario(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+						Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"");
+				} else {
+				UsuarioDTO pu = controller.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 						Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
 						Integer.parseInt(textoAltura.getText()), 
 						Integer.parseInt(textoMax.getText()), textoPass.getText());
+				}
 				
 				VentanaPrincipal i = new VentanaPrincipal();
 				
+				dispose();
 			}
 		});
 		
