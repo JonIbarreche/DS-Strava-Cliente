@@ -28,7 +28,7 @@ public class MainProgram {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						LoginWindow frame = new LoginWindow(null);
+						LoginWindow frame = new LoginWindow(null, null);
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -51,10 +51,10 @@ public class MainProgram {
 		
 		RetoController retoController = new RetoController(serviceLocator);
 		String tod = "Tiempo";
-		VentanaReto ventanaReto = new VentanaReto(tod, retoController);
+		//VentanaReto ventanaReto = new VentanaReto(tod, retoController);
 		
 		SesionController sesionController = new SesionController(serviceLocator);
-		VentanaSesion ventanaSesion = new VentanaSesion(sesionController);
+		//VentanaSesion ventanaSesion = new VentanaSesion(sesionController);
 		
 		
 		LoginDialog loginDialog = new LoginDialog(loginController);			
@@ -69,11 +69,11 @@ public class MainProgram {
 		
 		//lista de retos
 		
-		List<RetoDTO> retos = ventanaReto.getRetos();
+		//List<RetoDTO> retos = ventanaReto.getRetos();
 		
 		//lista de sesiones
 		
-		List<SesionDTO> sesiones = ventanaSesion.getSesiones();
+		//List<SesionDTO> sesiones = ventanaSesion.getSesiones();
 		
 		
 		

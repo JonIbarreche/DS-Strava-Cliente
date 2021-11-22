@@ -23,7 +23,7 @@ import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class VentanaSesion extends JFrame{
 	
-	private SesionController controller;
+	static SesionController controller;
 	
 	protected JPanel panel,panelElige,panelTitulo,panelFechaIni,panelHoraIni,panelDuracion,panelDistancia,panelBotones;
 	protected Container cp;

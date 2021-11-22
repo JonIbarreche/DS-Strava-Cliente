@@ -86,7 +86,7 @@ public class LoginWindow extends JFrame {
 		
 		JButton btnRegistrarse = new JButton("REGISTRARSE");
 		btnRegistrarse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			 public void actionPerformed(ActionEvent e) {
 				VentanaOpcion vo = new VentanaOpcion();
 				vo.setVisible(true);
 				dispose();

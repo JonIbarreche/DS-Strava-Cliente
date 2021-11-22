@@ -18,7 +18,7 @@ import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 public class VentanaRegistro extends JFrame {
 	
-	private RegistroController controller;
+	static RegistroController controller;
 	
 	protected JPanel panel,panelEmail,panelNombre,panelFecha,panelPass,panelPeso,panelAltura,panelMax,panelRep,panelBotones;
 	protected Container cp;

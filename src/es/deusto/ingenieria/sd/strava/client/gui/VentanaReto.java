@@ -24,7 +24,7 @@ import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 public class VentanaReto extends JFrame {
 	
-	private RetoController controller;
+	static RetoController controller;
 	
 	protected JPanel panel,panelElige,panelNomReto,panelFechaIni,panelFechaFin,panelTod,panelDeporte,panelBotones;
 	protected Container cp;
