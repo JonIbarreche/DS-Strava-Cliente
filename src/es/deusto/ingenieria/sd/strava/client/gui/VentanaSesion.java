@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,12 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class VentanaSesion extends JFrame{
-	
-	static SesionController controller;
 	
 	protected JPanel panel,panelElige,panelTitulo,panelFechaIni,panelHoraIni,panelDuracion,panelDistancia,panelBotones;
 	protected Container cp;
@@ -36,7 +35,8 @@ public class VentanaSesion extends JFrame{
 	protected JMenuItem menuItem;
 	
 	
-	public VentanaSesion(SesionController sesionController) {
+	public VentanaSesion(RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		
 		cp = this.getContentPane();
 		this.setTitle("CrearReto");
@@ -106,7 +106,7 @@ public class VentanaSesion extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal();
+				VentanaPrincipal k = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}
@@ -182,7 +182,7 @@ public class VentanaSesion extends JFrame{
 		setSize(500,350);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
+	/*
 	public List<SesionDTO> getSesiones() { 		
 		System.out.println(" - Getting sesiones...");
 		
@@ -197,5 +197,5 @@ public class VentanaSesion extends JFrame{
 		}
 			
 		return sesiones;		
-	}
+	}*/
 }

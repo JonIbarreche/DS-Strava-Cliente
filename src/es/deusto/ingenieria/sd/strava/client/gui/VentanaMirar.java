@@ -6,14 +6,20 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-import es.deusto.ingenieria.sd.strava.client.gui.*;
-
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 
@@ -41,7 +47,8 @@ public class VentanaMirar extends JFrame{
 
 	}
 	
-	public VentanaMirar(List<RetoDTO> lista) {
+	public VentanaMirar(List<RetoDTO> lista, RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
 		
@@ -86,7 +93,7 @@ public class VentanaMirar extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal();
+				VentanaPrincipal k = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}

@@ -1,21 +1,12 @@
 package es.deusto.ingenieria.sd.strava.client;
 
-import java.awt.EventQueue;
-import java.util.List;
-
 import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.client.gui.LoginDialog;
 import es.deusto.ingenieria.sd.strava.client.gui.LoginWindow;
-import es.deusto.ingenieria.sd.strava.client.gui.VentanaMirar;
-import es.deusto.ingenieria.sd.strava.client.gui.VentanaRegistro;
-import es.deusto.ingenieria.sd.strava.client.gui.VentanaReto;
-import es.deusto.ingenieria.sd.strava.client.gui.VentanaSesion;
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
-import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
-import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class MainProgram {
 
@@ -25,16 +16,7 @@ public class MainProgram {
 		 * Launch the application.
 		 */
 		
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						LoginWindow frame = new LoginWindow(null, null);
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			
 		ServiceLocator serviceLocator = new ServiceLocator();
 		
 		//args[0] = RMIRegistry IP
@@ -43,7 +25,7 @@ public class MainProgram {
 		serviceLocator.setService(args[0], args[1], args[2]);
 		
 		LoginController loginController = new LoginController(serviceLocator);
-		LoginWindow loginWindow = new LoginWindow(loginController);
+
 		
 		RegistroController registroController = new RegistroController(serviceLocator);
 		String plataforma = "google";
@@ -61,7 +43,7 @@ public class MainProgram {
 		//BidController bidController = new BidController(serviceLocator);			
 		//BidWindow bidWindow = new BidWindow(bidController);
 		
-		
+		LoginWindow loginWindow = new LoginWindow(loginController, registroController, retoController, sesionController);
 		
 		
 		//Login

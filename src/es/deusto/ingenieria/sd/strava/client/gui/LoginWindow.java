@@ -1,22 +1,22 @@
 package es.deusto.ingenieria.sd.strava.client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JTextField;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 
 public class LoginWindow extends JFrame {
 
@@ -26,27 +26,13 @@ public class LoginWindow extends JFrame {
 
 	
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginWindow frame = new LoginWindow(null);//add logincontroller
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 * @param loginController 
 	 */
-	public LoginWindow(LoginController loginController) {
+	public LoginWindow(LoginController logCtrl, RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 610, 377);
 		contentPane = new JPanel();
@@ -75,7 +61,7 @@ public class LoginWindow extends JFrame {
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal vp = new VentanaPrincipal();
+				VentanaPrincipal vp = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 				vp.setVisible(true);
 				dispose();
 			}
@@ -87,7 +73,7 @@ public class LoginWindow extends JFrame {
 		JButton btnRegistrarse = new JButton("REGISTRARSE");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				VentanaOpcion vo = new VentanaOpcion();
+				VentanaOpcion vo = new VentanaOpcion(logCtrl, regCtrl, retCtrl, sesCtrl);
 				vo.setVisible(true);
 				dispose();
 			}
@@ -95,5 +81,7 @@ public class LoginWindow extends JFrame {
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnRegistrarse.setBounds(63, 224, 172, 46);
 		contentPane.add(btnRegistrarse);
+		setVisible(true);
 	}
+	
 }

@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -19,12 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 public class VentanaReto extends JFrame {
-	
-	static RetoController controller;
 	
 	protected JPanel panel,panelElige,panelNomReto,panelFechaIni,panelFechaFin,panelTod,panelDeporte,panelBotones;
 	protected Container cp;
@@ -39,7 +38,8 @@ public class VentanaReto extends JFrame {
 	protected JMenuItem menuItem;
 	
 	
-	public VentanaReto(String tod, RetoController retoController) {
+	public VentanaReto(String tod, RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		
 		cp = this.getContentPane();
 		this.setTitle("CrearReto");
@@ -118,7 +118,7 @@ public class VentanaReto extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal();
+				VentanaPrincipal k = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}
@@ -151,7 +151,7 @@ public class VentanaReto extends JFrame {
 					tiempo = Integer.parseInt(textoTod.getText());
 				}
 				
-				RetoDTO nuevoReto = controller.crearReto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);
+				RetoDTO nuevoReto = retCtrl.crearReto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);
 				
 				
 				textoNomReto.setText("");
@@ -209,23 +209,6 @@ public class VentanaReto extends JFrame {
 		pack();
 		setSize(500,350);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-	
-	public List<RetoDTO> getRetos() { 		
-		System.out.println(" - Getting retos...");
-		
-		List<RetoDTO> retos = this.controller.getRetos();
-	
-		for (RetoDTO reto : retos) {
-			System.out.println("\t* " + reto.getNombreReto() + " - " + 
-		                                 reto.getFechaIni() + " - " + 
-		                                 reto.getFechaFin() + "/" +
-		                                 reto.getDistancia() + " - (" + 
-		                                 reto.getTiempo() + " - " +
-		                                 reto.getDeporte());
-		}
-			
-		return retos;		
 	}
 
 }

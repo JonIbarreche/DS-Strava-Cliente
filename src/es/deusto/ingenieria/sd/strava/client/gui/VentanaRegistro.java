@@ -13,12 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 public class VentanaRegistro extends JFrame {
-	
-	static RegistroController controller;
 	
 	protected JPanel panel,panelEmail,panelNombre,panelFecha,panelPass,panelPeso,panelAltura,panelMax,panelRep,panelBotones;
 	protected Container cp;
@@ -27,7 +28,8 @@ public class VentanaRegistro extends JFrame {
 	protected JButton botonRegistro,botonVolver;
 	
 	
-	public VentanaRegistro(String plataforma, RegistroController registroController) {
+	public VentanaRegistro(String plataforma, LoginController logCtrl, RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -109,7 +111,7 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				LoginWindow lw = new LoginWindow(null);
+				LoginWindow lw = new LoginWindow(logCtrl, regCtrl, retCtrl, sesCtrl);
 				lw.setVisible(true);
 				dispose();
 				
@@ -122,17 +124,17 @@ public class VentanaRegistro extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (plataforma == "facebook" || plataforma == "google") {
-				UsuarioDTO u = controller.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+				UsuarioDTO u = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 						Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
 						Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"");
 				} else {
-				UsuarioDTO pu = controller.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+				UsuarioDTO pu = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 						Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
 						Integer.parseInt(textoAltura.getText()), 
 						Integer.parseInt(textoMax.getText()), textoPass.getText());
 				}
 				
-				VentanaPrincipal i = new VentanaPrincipal();
+				VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 				
 				dispose();
 			}

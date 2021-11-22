@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
@@ -27,11 +28,11 @@ public class VentanaPrincipal extends JFrame{
 	protected JMenuItem menuItem;
 	protected JOptionPane opcionCreacion;
 	
-	private RetoController controllerReto;
-	private SesionController controllerSesion;
 	
-	public VentanaPrincipal() {
-		List<RetoDTO> lista = controllerReto.getRetos();
+	public VentanaPrincipal(RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
+		
+		List<RetoDTO> lista = retCtrl.getRetos();
 		
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -76,9 +77,9 @@ public class VentanaPrincipal extends JFrame{
 				if (seleccion != -1) {
 					seleccion += 1;
 					if (seleccion == 1) {
-						VentanaReto i = new VentanaReto("Distancia", controllerReto);
+						VentanaReto i = new VentanaReto("Distancia",regCtrl, retCtrl, sesCtrl);
 					} else if (seleccion == 2) {
-						VentanaReto i = new VentanaReto("Tiempo", controllerReto);
+						VentanaReto i = new VentanaReto("Tiempo", regCtrl, retCtrl, sesCtrl);
 					}
 				}
 				dispose();		   
@@ -92,7 +93,7 @@ public class VentanaPrincipal extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaMirar l = new VentanaMirar(lista);
+				VentanaMirar l = new VentanaMirar(lista, regCtrl, retCtrl, sesCtrl);
 				dispose();
 			}
 			
@@ -103,7 +104,7 @@ public class VentanaPrincipal extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSesion j = new VentanaSesion(controllerSesion);
+				VentanaSesion j = new VentanaSesion(regCtrl, retCtrl, sesCtrl);
 				dispose();
 				
 			}

@@ -6,16 +6,22 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import es.deusto.ingenieria.sd.strava.client.gui.*;
+import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
+import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
+import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
+import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 
 public class VentanaOpcion extends JFrame{
 	protected Container cp;
 	protected JPanel panel, panelBoton1,panelBoton2,panelBoton3;
 	protected JButton mail, facebook, google;
 	
-	public VentanaOpcion() {
+	public VentanaOpcion(LoginController logCtrl, RegistroController regCtrl, 
+			RetoController retCtrl, SesionController sesCtrl) {
 		
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -37,7 +43,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("mail", null);
+				VentanaRegistro i = new VentanaRegistro("mail", logCtrl, regCtrl, retCtrl, sesCtrl);
 				
 				dispose();		   
 				
@@ -50,7 +56,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("facebook", null);
+				VentanaRegistro i = new VentanaRegistro("facebook", logCtrl, regCtrl, retCtrl, sesCtrl);
 				dispose();
 			}
 			
@@ -61,7 +67,7 @@ public class VentanaOpcion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro i = new VentanaRegistro("google", null);
+				VentanaRegistro i = new VentanaRegistro("google", logCtrl, regCtrl, retCtrl, sesCtrl);
 				dispose();
 				
 			}
