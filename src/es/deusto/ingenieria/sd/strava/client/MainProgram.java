@@ -47,7 +47,7 @@ public class MainProgram {
 		
 		RegistroController registroController = new RegistroController(serviceLocator);
 		String plataforma = "google";
-		VentanaRegistro ventanaRegistro = new VentanaRegistro(plataforma, registroController);
+		//VentanaRegistro ventanaRegistro = new VentanaRegistro(plataforma, registroController);
 		
 		RetoController retoController = new RetoController(serviceLocator);
 		String tod = "Tiempo";
@@ -75,9 +75,6 @@ public class MainProgram {
 		
 		List<SesionDTO> sesiones = ventanaSesion.getSesiones();
 		
-		/**
-		 * Crear Reto, Crear Sesion, Aceptar Reto
-		 */
 		
 		
 		//Get Categories

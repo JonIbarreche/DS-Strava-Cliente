@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
+
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 public class RetoController {

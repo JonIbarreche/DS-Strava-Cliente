@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Sesion;
+
 import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class SesionController {

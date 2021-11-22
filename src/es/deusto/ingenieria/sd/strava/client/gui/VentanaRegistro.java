@@ -7,15 +7,17 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
-import es.deusto.ingenieria.sd.strava.client.gui.*;
-import es.deusto.ingenieria.sd.strava.server.data.domain.PasswordUsuario;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Usuario;
 import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 public class VentanaRegistro extends JFrame {
+	
 	private RegistroController controller;
 	
 	protected JPanel panel,panelEmail,panelNombre,panelFecha,panelPass,panelPeso,panelAltura,panelMax,panelRep,panelBotones;

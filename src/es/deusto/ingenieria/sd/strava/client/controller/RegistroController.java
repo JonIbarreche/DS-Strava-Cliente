@@ -3,7 +3,6 @@ package es.deusto.ingenieria.sd.strava.client.controller;
 import java.rmi.RemoteException;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Usuario;
 import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 

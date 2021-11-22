@@ -8,12 +8,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
-import es.deusto.ingenieria.sd.strava.client.gui.*;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Sesion;
 import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 
 public class VentanaSesion extends JFrame{
@@ -118,7 +123,12 @@ public class VentanaSesion extends JFrame{
 				String horaIni = textoHoraIni.getText();
 				int Duracion = Integer.parseInt(textoDuracion.getText());
 			
-				Sesion nuevaSesion = new Sesion(titulo, distancia, fechaIni, horaIni, Duracion);
+				SesionDTO nuevaSesion = new SesionDTO();
+				nuevaSesion.setDistancia(distancia);
+				nuevaSesion.setDuracion(Duracion);
+				nuevaSesion.setFechaIni(fechaIni);
+				nuevaSesion.setHoraIni(horaIni);
+				nuevaSesion.setTitulo(titulo);
 				System.out.println(nuevaSesion.toString());
 				textoTitulo.setText("");
 				textoFechaIni.setText("");

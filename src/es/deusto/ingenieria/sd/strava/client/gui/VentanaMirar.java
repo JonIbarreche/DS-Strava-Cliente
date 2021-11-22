@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.*;
 
 import es.deusto.ingenieria.sd.strava.client.gui.*;
-import es.deusto.ingenieria.sd.strava.server.data.domain.Reto;
+
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
 
