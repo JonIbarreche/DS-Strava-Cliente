@@ -32,6 +32,8 @@ public class MainProgram {
 		//VentanaRegistro ventanaRegistro = new VentanaRegistro(plataforma, registroController);
 		
 		RetoController retoController = new RetoController(serviceLocator);
+		System.out.println("prueba");
+		retoController.getRetos();
 		String tod = "Tiempo";
 		//VentanaReto ventanaReto = new VentanaReto(tod, retoController);
 		

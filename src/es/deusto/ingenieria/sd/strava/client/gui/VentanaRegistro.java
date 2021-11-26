@@ -124,19 +124,21 @@ public class VentanaRegistro extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (plataforma == "facebook" || plataforma == "google") {
-				UsuarioDTO u = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
-						Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
-						Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"");
+					UsuarioDTO u = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+							Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
+							Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"");
+					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+					i.setVisible(true);
+					dispose();
 				} else {
-				UsuarioDTO pu = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
-						Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
-						Integer.parseInt(textoAltura.getText()), 
-						Integer.parseInt(textoMax.getText()), textoPass.getText());
+					UsuarioDTO pu = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
+							Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
+							Integer.parseInt(textoAltura.getText()), 
+							Integer.parseInt(textoMax.getText()), textoPass.getText());
+					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+					i.setVisible(true);
+					dispose();
 				}
-				
-				VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
-				
-				dispose();
 			}
 		});
 		
