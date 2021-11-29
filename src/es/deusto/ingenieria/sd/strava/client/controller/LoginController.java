@@ -16,10 +16,14 @@ public class LoginController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public boolean login(String email, String password) {
+	public boolean login(String email, String password, String plataforma) {
 		try {
-			this.token = this.serviceLocator.getService().login(email, password);			
-			return true;
+			this.token = this.serviceLocator.getService().login(email, password, plataforma);	
+			if (token != -1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (RemoteException e) {
 			System.out.println("# Error during login: " + e);
 			this.token = -1;

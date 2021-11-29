@@ -14,8 +14,9 @@ public class LoginDialog {
 	public boolean login() {		
 		System.out.println(" - Login into the server: '" + this.email + "' - '" + this.password + "' ...");
 		String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex(password);
-		System.out.println("\t* Password hash: " + sha1);		
-		boolean result = this.controller.login(email, sha1);
+		System.out.println("\t* Password hash: " + sha1);	
+		String plataforma = "";
+		boolean result = this.controller.login(email, sha1, plataforma);
 		System.out.println("\t* Login result: " + result);
 		System.out.println("\t* Token: " + this.controller.getToken());
 

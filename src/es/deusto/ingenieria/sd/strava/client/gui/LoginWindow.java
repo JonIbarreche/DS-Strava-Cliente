@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -23,7 +25,8 @@ public class LoginWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtMail;
 	private JTextField txtPassword;
-
+	protected ButtonGroup grupoLogin;
+	protected JRadioButton rbMail,rbFb,rbGoogle;
 	
 	
 
@@ -46,6 +49,18 @@ public class LoginWindow extends JFrame {
 		lblStravaCliente.setBounds(188, 13, 229, 62);
 		contentPane.add(lblStravaCliente);
 		
+		grupoLogin = new ButtonGroup();
+		rbMail = new JRadioButton("Mail");
+		rbFb = new JRadioButton("Facebook");
+		rbGoogle = new JRadioButton("Google");
+		grupoLogin.add(rbMail);
+		grupoLogin.add(rbFb);
+		grupoLogin.add(rbGoogle);
+		contentPane.add(rbMail);
+		contentPane.add(rbFb);
+		contentPane.add(rbGoogle);
+		rbMail.setVisible(true);
+		
 		txtMail = new JTextField();
 		txtMail.setText("Mail");
 		txtMail.setBounds(209, 103, 146, 28);
@@ -61,9 +76,24 @@ public class LoginWindow extends JFrame {
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal vp = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
-				vp.setVisible(true);
-				dispose();
+				boolean loginBoolean = false;
+				//login = logCtrl.login(txtMail.getText(), "" , "Facebook");
+				/*if (rbFb.isSelected()) {
+					login = logCtrl.login(txtMail.getText(), "" , "Facebook");
+				} else if (rbGoogle.isSelected()) {
+					login = logCtrl.login(txtMail.getText(), "" , "Google");
+				} else {
+					login = logCtrl.login(txtMail.getText(), txtPassword.getText(), "Mail");
+				}*/
+				if(loginBoolean = true) {
+					System.out.println("entro");
+					VentanaPrincipal vp = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+					vp.setVisible(true);
+					dispose();
+				} else {
+					System.out.println("vuele a intentarlo");
+				}
+				
 			}
 		});
 		btnIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 15));

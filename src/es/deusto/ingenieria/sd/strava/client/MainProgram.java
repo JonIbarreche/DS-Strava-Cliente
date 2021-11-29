@@ -40,7 +40,7 @@ public class MainProgram {
 		//VentanaSesion ventanaSesion = new VentanaSesion(sesionController);
 		
 		
-		LoginDialog loginDialog = new LoginDialog(loginController);			
+		//LoginDialog loginDialog = new LoginDialog(loginController);			
 		//BidController bidController = new BidController(serviceLocator);			
 		//BidWindow bidWindow = new BidWindow(bidController);
 		
@@ -48,7 +48,7 @@ public class MainProgram {
 		
 		
 		//Login
-		loginDialog.login();	
+		//loginDialog.login();	
 		
 		//lista de retos
 		
@@ -75,7 +75,7 @@ public class MainProgram {
 		//Get Articles to check if the bid has been done
 				//articles = bidWindow.getArticles(categories.get(0).getName());
 		//Logout
-		loginDialog.logout();
+		//loginDialog.logout();
 		
 		
 		
