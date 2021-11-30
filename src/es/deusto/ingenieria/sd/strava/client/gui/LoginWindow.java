@@ -76,8 +76,7 @@ public class LoginWindow extends JFrame {
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean loginBoolean = false;
-				//login = logCtrl.login(txtMail.getText(), "" , "Facebook");
+				boolean login = logCtrl.login(txtMail.getText(), "abc123" , "Facebook");
 				/*if (rbFb.isSelected()) {
 					login = logCtrl.login(txtMail.getText(), "" , "Facebook");
 				} else if (rbGoogle.isSelected()) {
@@ -85,7 +84,7 @@ public class LoginWindow extends JFrame {
 				} else {
 					login = logCtrl.login(txtMail.getText(), txtPassword.getText(), "Mail");
 				}*/
-				if(loginBoolean = true) {
+				if(login == true) {
 					System.out.println("entro");
 					VentanaPrincipal vp = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 					vp.setVisible(true);
