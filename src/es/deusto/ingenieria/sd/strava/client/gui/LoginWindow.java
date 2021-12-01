@@ -76,14 +76,14 @@ public class LoginWindow extends JFrame {
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean login = logCtrl.login(txtMail.getText(), "abc123" , "Facebook");
-				/*if (rbFb.isSelected()) {
+				boolean login;
+				if (rbFb.isSelected()) {
 					login = logCtrl.login(txtMail.getText(), "" , "Facebook");
 				} else if (rbGoogle.isSelected()) {
 					login = logCtrl.login(txtMail.getText(), "" , "Google");
 				} else {
 					login = logCtrl.login(txtMail.getText(), txtPassword.getText(), "Mail");
-				}*/
+				}
 				if(login == true) {
 					System.out.println("entro");
 					VentanaPrincipal vp = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
