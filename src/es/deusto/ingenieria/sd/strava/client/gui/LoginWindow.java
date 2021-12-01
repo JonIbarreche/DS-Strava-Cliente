@@ -22,7 +22,7 @@ import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 
 public class LoginWindow extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPane, panelbotones;
 	private JTextField txtMail;
 	private JTextField txtPassword;
 	protected ButtonGroup grupoLogin;
@@ -56,10 +56,12 @@ public class LoginWindow extends JFrame {
 		grupoLogin.add(rbMail);
 		grupoLogin.add(rbFb);
 		grupoLogin.add(rbGoogle);
-		contentPane.add(rbMail);
-		contentPane.add(rbFb);
-		contentPane.add(rbGoogle);
-		rbMail.setVisible(true);
+		contentPane.add(panelbotones);
+		panelbotones.add(rbMail);
+		panelbotones.add(rbFb);
+		panelbotones.add(rbGoogle);
+		
+		
 		
 		txtMail = new JTextField();
 		txtMail.setText("Mail");
