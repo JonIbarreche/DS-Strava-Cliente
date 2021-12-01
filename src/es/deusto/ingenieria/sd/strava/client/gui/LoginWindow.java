@@ -37,7 +37,7 @@ public class LoginWindow extends JFrame {
 	public LoginWindow(LoginController logCtrl, RegistroController regCtrl, 
 			RetoController retCtrl, SesionController sesCtrl) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 610, 377);
+		setBounds(100, 100, 610, 419);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 0));
@@ -98,7 +98,7 @@ public class LoginWindow extends JFrame {
 			}
 		});
 		btnIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnIniciarSesion.setBounds(336, 223, 172, 46);
+		btnIniciarSesion.setBounds(337, 284, 172, 46);
 		contentPane.add(btnIniciarSesion);
 		
 		JButton btnRegistrarse = new JButton("REGISTRARSE");
@@ -110,9 +110,20 @@ public class LoginWindow extends JFrame {
 			}
 		});
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnRegistrarse.setBounds(63, 224, 172, 46);
+		btnRegistrarse.setBounds(67, 284, 172, 46);
 		contentPane.add(btnRegistrarse);
+		
+		JRadioButton rdbtnMail = new JRadioButton("Mail");
+		rdbtnMail.setBounds(102, 217, 127, 25);
+		contentPane.add(rdbtnMail);
+		
+		JRadioButton rdbtnGoogle = new JRadioButton("Google");
+		rdbtnGoogle.setBounds(230, 217, 127, 25);
+		contentPane.add(rdbtnGoogle);
+		
+		JRadioButton rdbtnFacebook = new JRadioButton("Facebook");
+		rdbtnFacebook.setBounds(358, 217, 127, 25);
+		contentPane.add(rdbtnFacebook);
 		setVisible(true);
 	}
-	
 }
