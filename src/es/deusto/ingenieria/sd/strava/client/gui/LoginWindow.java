@@ -19,6 +19,7 @@ import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 
 public class LoginWindow extends JFrame {
 
@@ -98,11 +99,11 @@ public class LoginWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean login;
 				if (rdbtnFacebook.isSelected()) {
-					login = logCtrl.login(txtMail.getText(), "" , "Facebook");
+					login = logCtrl.login(txtMail.getText(), "" , Tipo.FACEBOOK);
 				} else if (rdbtnGoogle.isSelected()) {
-					login = logCtrl.login(txtMail.getText(), "" , "Google");
+					login = logCtrl.login(txtMail.getText(), "" , Tipo.GOOGLE);
 				} else {
-					login = logCtrl.login(txtMail.getText(), txtPassword.getText(), "Mail");
+					login = logCtrl.login(txtMail.getText(), txtPassword.getText(), Tipo.MAIL);
 				}
 				if(login == true) {
 					System.out.println("entro");

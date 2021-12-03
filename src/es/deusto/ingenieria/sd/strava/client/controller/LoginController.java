@@ -3,6 +3,7 @@ package es.deusto.ingenieria.sd.strava.client.controller;
 import java.rmi.RemoteException;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 
 //This class implements Controller pattern.
 public class LoginController {	
@@ -16,7 +17,7 @@ public class LoginController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public boolean login(String email, String password, String plataforma) {
+	public boolean login(String email, String password, Tipo plataforma) {
 		try {
 			this.token = this.serviceLocator.getService().login(email, password, plataforma);	
 			if (token != -1) {
