@@ -1,6 +1,7 @@
 package es.deusto.ingenieria.sd.strava.client.controller;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 
@@ -15,9 +16,9 @@ public class RegistroController {
 	}
 	
 	public UsuarioDTO registro(String email, String nombre, String fecha, int peso, int altura, int max,
-			int rep, String contrasena) {
+			int rep, String contrasena, Tipo tipo) {
 	    try {
-			this.u = this.serviceLocator.getService().crearUsuario(email, nombre, fecha, peso, altura, max, rep, contrasena);
+			this.u = this.serviceLocator.getService().crearUsuario(email, nombre, fecha, peso, altura, max, rep, contrasena, tipo);
 			return u;
 		} catch (Exception e) {
 			System.out.println("# Error en el registro: " + e);

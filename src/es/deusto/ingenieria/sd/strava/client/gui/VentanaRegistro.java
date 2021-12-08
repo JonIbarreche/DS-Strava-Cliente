@@ -17,6 +17,7 @@ import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
+import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 public class VentanaRegistro extends JFrame {
@@ -123,10 +124,20 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				Tipo tipo = Tipo.MAIL;
+				if(plataforma.equals("facebook")) {
+					tipo = Tipo.FACEBOOK;
+				} else if(plataforma.equals("google")) {
+					tipo = Tipo.GOOGLE;
+				} else if(plataforma.equals("mail")) {
+					tipo = Tipo.MAIL;
+				}
+				
 				if (plataforma == "facebook" || plataforma == "google") {
 					UsuarioDTO u = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 							Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
-							Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"");
+							Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"", tipo);
 					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 					i.setVisible(true);
 					dispose();
@@ -134,7 +145,7 @@ public class VentanaRegistro extends JFrame {
 					UsuarioDTO pu = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 							Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
 							Integer.parseInt(textoAltura.getText()), 
-							Integer.parseInt(textoMax.getText()), textoPass.getText());
+							Integer.parseInt(textoMax.getText()), textoPass.getText(), tipo);
 					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
 					i.setVisible(true);
 					dispose();
