@@ -138,7 +138,7 @@ public class VentanaRegistro extends JFrame {
 					UsuarioDTO u = regCtrl.registro(textoEmail.getText(), textoNom.getText(), textoFecha.getText(), 
 							Integer.parseInt(textoPeso.getText()), Integer.parseInt(textoAltura.getText()), 
 							Integer.parseInt(textoMax.getText()), Integer.parseInt(textoRep.getText()),"", tipo);
-					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+					LoginWindow i = new LoginWindow(logCtrl, regCtrl, retCtrl, sesCtrl);
 					i.setVisible(true);
 					dispose();
 				} else {
@@ -146,7 +146,7 @@ public class VentanaRegistro extends JFrame {
 							Integer.parseInt(textoRep.getText()), Integer.parseInt(textoPeso.getText()), 
 							Integer.parseInt(textoAltura.getText()), 
 							Integer.parseInt(textoMax.getText()), textoPass.getText(), tipo);
-					VentanaPrincipal i = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+					LoginWindow i = new LoginWindow(logCtrl, regCtrl, retCtrl, sesCtrl);
 					i.setVisible(true);
 					dispose();
 				}
