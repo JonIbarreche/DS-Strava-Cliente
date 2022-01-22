@@ -3,19 +3,19 @@ package es.deusto.ingenieria.sd.strava.client.gui;
 import es.deusto.ingenieria.sd.strava.client.controller.LoginController;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 
-public class LoginDialog {	
-	private LoginController controller;	
+public class LoginDialog {
+	private LoginController controller;
 	private String email = "thomas.e2001@gmail.com";
 	private String password = "$!9PhNz,";
 
 	public LoginDialog(LoginController controller) {
 		this.controller = controller;
 	}
-	
-	public boolean login() {		
+
+	public boolean login() {
 		System.out.println(" - Login into the server: '" + this.email + "' - '" + this.password + "' ...");
 		String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex(password);
-		System.out.println("\t* Password hash: " + sha1);	
+		System.out.println("\t* Password hash: " + sha1);
 		Tipo plataforma = Tipo.MAIL;
 		boolean result = this.controller.login(email, sha1, plataforma);
 		System.out.println("\t* Login result: " + result);
@@ -23,11 +23,11 @@ public class LoginDialog {
 
 		return result;
 	}
-	
+
 	public void logout() {
-		System.out.println(" - Logout from the server...");		
+		System.out.println(" - Logout from the server...");
 		this.controller.logout();
-		System.out.println("\t* Logout success!");		
+		System.out.println("\t* Logout success!");
 
 	}
 }

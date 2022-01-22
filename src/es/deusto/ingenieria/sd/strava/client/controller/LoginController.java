@@ -6,8 +6,8 @@ import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
 import es.deusto.ingenieria.sd.strava.server.data.domain.Tipo;
 
 //This class implements Controller pattern.
-public class LoginController {	
-	
+public class LoginController {
+
 	//Reference to the Service Locator
 	private ServiceLocator serviceLocator;
 	//This attibute stores the token when login success
@@ -16,10 +16,10 @@ public class LoginController {
 	public LoginController(ServiceLocator serviceLocator) {
 		this.serviceLocator = serviceLocator;
 	}
-	
+
 	public boolean login(String email, String password, Tipo plataforma) {
 		try {
-			this.token = this.serviceLocator.getService().login(email, password, plataforma);	
+			this.token = this.serviceLocator.getService().login(email, password, plataforma);
 			if (token != -1) {
 				return true;
 			} else {
@@ -31,7 +31,7 @@ public class LoginController {
 			return false;
 		}
 	}
-	
+
 	public void logout() {
 		try {
 			this.serviceLocator.getService().logout(this.token);

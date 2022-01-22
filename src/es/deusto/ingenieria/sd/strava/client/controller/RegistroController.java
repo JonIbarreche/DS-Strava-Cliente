@@ -6,15 +6,15 @@ import es.deusto.ingenieria.sd.strava.server.data.dto.UsuarioDTO;
 
 
 public class RegistroController {
-	
+
 	private ServiceLocator serviceLocator;
-	
+
 	private UsuarioDTO u;
-	
+
 	public RegistroController(ServiceLocator serviceLocator) {
 		this.serviceLocator = serviceLocator;
 	}
-	
+
 	public UsuarioDTO registro(String email, String nombre, String fecha, int peso, int altura, int max,
 			int rep, String contrasena, Tipo tipo) {
 	    try {
@@ -25,7 +25,7 @@ public class RegistroController {
 			return null;
 		}
 	}
-	
+
 	public UsuarioDTO getUsuario() {
 		return u;
 	}

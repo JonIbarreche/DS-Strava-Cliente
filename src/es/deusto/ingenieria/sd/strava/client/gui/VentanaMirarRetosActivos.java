@@ -10,10 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,16 +25,20 @@ import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
 
-
-public class VentanaMirar extends JFrame{
+public class VentanaMirarRetosActivos extends JFrame{
 	protected Container cp;
 	protected JPanel panel, panelBoton, panelTabla;
-	protected JButton botonVolver;
 	protected JMenuBar menuBar;
 	protected JMenu menu;
 	protected JMenuItem menuItem;
 	protected JTable tabla;
 	protected JScrollPane scrpTabla;
+	private JPanel panelVolver;
+	private JButton botonVolver;
+	private JPanel panelAceptar;
+	private JButton botonAceptar;
+	private JPanel panelElegir;
+	private JComboBox comboBox;
 
 	public String[] prepararParaLista(RetoDTO r) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -50,72 +56,80 @@ public class VentanaMirar extends JFrame{
 		}
 
 	}
-	
-	public VentanaMirar(List<RetoDTO> lista, RegistroController regCtrl, 
+
+	public VentanaMirarRetosActivos(String mail, List<RetoDTO> lista, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
-		
+
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(2,1));
-		
+
 		menuBar = new JMenuBar();
 		menu = new JMenu("M�s opciones");
-		
+
 		menuItem = new JMenuItem("Log out");
 		menuItem.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose(); //sierra ventana
-				
+
 			}
 		});
 		panelTabla = new JPanel();
 		panelTabla.setLayout(new FlowLayout());
-		
+
 		String[] nombresColumna = {"Nombre", "F. Inicio", "F. Fin", "Distancia", "Tiempo", "Deporte"};
 		String[][] retos = new String[100][100];
 		for (int i = 0; i < lista.size(); i++) {
 			String[] preparado = prepararParaLista(lista.get(i));
 			retos[i] = preparado;
 		}
-		
-		
+
+
 		tabla = new JTable(retos, nombresColumna);
-		
+
 		scrpTabla = new JScrollPane(tabla);
 		Dimension d = tabla.getPreferredSize();
 		scrpTabla.setPreferredSize(
 		    new Dimension(d.width,tabla.getRowHeight()*12+1));
 		
+		
 		panelBoton = new JPanel();
 		panel.setLayout(new FlowLayout());
-		
-		botonVolver = new JButton("Volver");
-		botonVolver.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
-				k.setVisible(true);
-				dispose();
-			}
-		});
-		
-		
+
+
 		cp.add(panel);
 		setJMenuBar(menuBar);
 		menuBar.add(menu);
 		menu.add(menuItem);
-		
+
 		panel.add(panelTabla);
 		panel.add(panelBoton);
+		panelBoton.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		panelBoton.add(botonVolver);
+		panelVolver = new JPanel();
+		panelBoton.add(panelVolver);
 		
+		botonVolver = new JButton("Volver");
+		botonVolver.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaPrincipal vp = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				dispose();
+
+			}
+
+		});
+
+		
+		panelVolver.add(botonVolver);
+		
+
 		panelTabla.add(scrpTabla);
-		
+
 		setVisible(true);
 		pack();
 		setSize(628,316);

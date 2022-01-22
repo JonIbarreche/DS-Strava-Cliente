@@ -19,14 +19,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
-import com.toedter.calendar.JDateChooser;
 
 public class VentanaReto extends JFrame {
-	
+
 	protected JPanel panel,panelElige,panelNomReto,panelFechaIni,panelFechaFin,panelTod,panelDeporte,panelBotones;
 	protected Container cp;
 	protected JLabel labelElige,labelNomReto,labelFechaIni,labelFechaFin,labelTod,labelDeporte;
@@ -40,54 +41,54 @@ public class VentanaReto extends JFrame {
 	protected JMenuItem menuItem;
 	private JDateChooser fechaIniChooser;
 	private JDateChooser fechaFinChooser;
-	
-	
-	public VentanaReto(String tod, RegistroController regCtrl, 
+
+
+	public VentanaReto(String mail, String tod, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
-		
+
 		cp = this.getContentPane();
 		this.setTitle("CrearReto");
-		
+
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(6,1));
-		
+
 		menuBar = new JMenuBar();
 		menu = new JMenu("M�s opciones");
-		
+
 		menuItem = new JMenuItem("Log out");
 		menuItem.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose(); //sierra ventana
-				
+
 			}
 		});
-		
+
 		//panel nombre reto
 		panelNomReto = new JPanel();
 		panelNomReto.setLayout(new FlowLayout());
-		
+
 		labelNomReto = new JLabel("Nombre del Reto:");
 		textoNomReto = new JTextField();
 		textoNomReto.setPreferredSize(new Dimension(200, 25));
-		
+
 		//panel fecha inicio
 		panelFechaIni = new JPanel();
 		panelFechaIni.setLayout(new FlowLayout());
-		
+
 		labelFechaIni = new JLabel("Fecha de Inicio (DD/MM/AAAA):");
-		
+
 		//panel fecha de inicio
 		panelFechaFin = new JPanel();
 		panelFechaFin.setLayout(new FlowLayout());
-		
+
 		labelFechaFin = new JLabel("Fecha Fin (DD/MM/AAAA):");
-		
+
 		//panel distancia
 		panelTod = new JPanel();
 		panelTod .setLayout(new FlowLayout());
-		
+
 		if(tod == "Distancia") {
 			labelTod = new JLabel("Distancia a Recorrer:");
 		} else if(tod == "Tiempo") {
@@ -95,11 +96,11 @@ public class VentanaReto extends JFrame {
 		}
 		textoTod = new JTextField();
 		textoTod.setPreferredSize(new Dimension(200, 25));
-		
+
 		//panel deporte
 		panelDeporte = new JPanel();
 		panelDeporte.setLayout(new FlowLayout());
-		
+
 		labelDeporte = new JLabel("Deporte:");
 		grupoDeporte = new ButtonGroup();
 		rbMtb = new JRadioButton("MTB");
@@ -108,25 +109,25 @@ public class VentanaReto extends JFrame {
 		grupoDeporte.add(rbMtb);
 		grupoDeporte.add(rbCicl);
 		grupoDeporte.add(rbRun);
-		
+
 		//panelBotones
 		panelBotones = new JPanel();
 		panelBotones.setLayout(new FlowLayout());
 		//botones
 		botonVolver = new JButton("Volver");
 		botonVolver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal(regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal k = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}
 		});
-		
+
 		botonCrear = new JButton("Crear");
 		botonCrear.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreReto = textoNomReto.getText();
@@ -135,12 +136,12 @@ public class VentanaReto extends JFrame {
 				int tiempo = 0;
 				float distancia = 0;
 				String deporte = "";
-				
-				if(rbCicl.isSelected() == true) {
+
+				if(rbCicl.isSelected()) {
 					deporte = "MTB";
-				} else if(rbMtb.isSelected() == true) {
+				} else if(rbMtb.isSelected()) {
 					deporte = "Ciclismo";
-				} else if(rbRun.isSelected() == true) {
+				} else if(rbRun.isSelected()) {
 					deporte = "Running";
 				}
 				if(tod == "Distancia") {
@@ -150,28 +151,28 @@ public class VentanaReto extends JFrame {
 					distancia = 0;
 					tiempo = Integer.parseInt(textoTod.getText());
 				}
-				
+
 				RetoDTO nuevoReto = retCtrl.crearReto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);
-				
-				
+
+
 				textoNomReto.setText("");
 				textoTod.setText("");
 				rbCicl.setSelected(false);
 				rbMtb.setSelected(false);
 				rbRun.setSelected(false);
-				
+
 				creado = new JOptionPane();
-				creado.showMessageDialog(null, "Nuevo Reto Creado Correctamente");
+				JOptionPane.showMessageDialog(null, "Nuevo Reto Creado Correctamente");
 
 			}
 		});
-		
-		
+
+
 		cp.add(panel);
 		setJMenuBar(menuBar);
 		menuBar.add(menu);
 		menu.add(menuItem);
-		
+
 		panel.add(panelNomReto);
 		panel.add(panelFechaIni);
 		panel.add(panelFechaFin);
@@ -179,34 +180,34 @@ public class VentanaReto extends JFrame {
 		panel.add(panelDeporte);
 
 		panel.add(panelBotones);
-		
+
 		panelNomReto.add(labelNomReto);
 		panelNomReto.add(textoNomReto);
 
 		panelFechaIni.add(labelFechaIni);
-		
+
 		fechaIniChooser = new JDateChooser();
 		panelFechaIni.add(fechaIniChooser);
-		
+
 		panelFechaFin.add(labelFechaFin);
-		
+
 		fechaFinChooser = new JDateChooser();
 		panelFechaFin.add(fechaFinChooser);
-		
+
 		panelTod.add(labelTod);
 		panelTod.add(textoTod);
-		
+
 		panelDeporte.add(labelDeporte);
 		panelDeporte.add(rbCicl);
 		panelDeporte.add(rbMtb);
 		panelDeporte.add(rbRun);
-		
-		
-		
+
+
+
 		panelBotones.add(botonVolver);
 		panelBotones.add(botonCrear);
-		
-		
+
+
 		setVisible(true);
 		pack();
 		setSize(500,350);
