@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -22,13 +23,14 @@ import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
+import com.toedter.calendar.JDateChooser;
 
 public class VentanaReto extends JFrame {
 	
 	protected JPanel panel,panelElige,panelNomReto,panelFechaIni,panelFechaFin,panelTod,panelDeporte,panelBotones;
 	protected Container cp;
 	protected JLabel labelElige,labelNomReto,labelFechaIni,labelFechaFin,labelTod,labelDeporte;
-	protected JTextField textoNomReto,textoFechaIni,textoFechaFin,textoTod;
+	protected JTextField textoNomReto,textoTod;
 	protected ButtonGroup grupoDeporte;
 	protected JRadioButton rbMtb,rbCicl,rbRun;
 	protected JButton botonCrear,botonVolver;
@@ -36,6 +38,8 @@ public class VentanaReto extends JFrame {
 	protected JMenuBar menuBar;
 	protected JMenu menu;
 	protected JMenuItem menuItem;
+	private JDateChooser fechaIniChooser;
+	private JDateChooser fechaFinChooser;
 	
 	
 	public VentanaReto(String tod, RegistroController regCtrl, 
@@ -73,16 +77,12 @@ public class VentanaReto extends JFrame {
 		panelFechaIni.setLayout(new FlowLayout());
 		
 		labelFechaIni = new JLabel("Fecha de Inicio (DD/MM/AAAA):");
-		textoFechaIni = new JTextField();
-		textoFechaIni.setPreferredSize(new Dimension(200, 25));
 		
 		//panel fecha de inicio
 		panelFechaFin = new JPanel();
 		panelFechaFin.setLayout(new FlowLayout());
 		
 		labelFechaFin = new JLabel("Fecha Fin (DD/MM/AAAA):");
-		textoFechaFin = new JTextField();
-		textoFechaFin.setPreferredSize(new Dimension(200, 25));
 		
 		//panel distancia
 		panelTod = new JPanel();
@@ -130,8 +130,8 @@ public class VentanaReto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreReto = textoNomReto.getText();
-				String fechaIni = textoFechaIni.getText();
-				String fechaFin = textoFechaFin.getText();
+				Date fechaIni = fechaIniChooser.getDate();
+				Date fechaFin = fechaFinChooser.getDate();
 				int tiempo = 0;
 				float distancia = 0;
 				String deporte = "";
@@ -155,8 +155,6 @@ public class VentanaReto extends JFrame {
 				
 				
 				textoNomReto.setText("");
-				textoFechaIni.setText("");
-				textoFechaFin.setText("");
 				textoTod.setText("");
 				rbCicl.setSelected(false);
 				rbMtb.setSelected(false);
@@ -186,10 +184,14 @@ public class VentanaReto extends JFrame {
 		panelNomReto.add(textoNomReto);
 
 		panelFechaIni.add(labelFechaIni);
-		panelFechaIni.add(textoFechaIni);
+		
+		fechaIniChooser = new JDateChooser();
+		panelFechaIni.add(fechaIniChooser);
 		
 		panelFechaFin.add(labelFechaFin);
-		panelFechaFin.add(textoFechaFin);
+		
+		fechaFinChooser = new JDateChooser();
+		panelFechaFin.add(fechaFinChooser);
 		
 		panelTod.add(labelTod);
 		panelTod.add(textoTod);

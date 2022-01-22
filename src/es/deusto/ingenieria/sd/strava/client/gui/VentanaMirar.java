@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -34,14 +35,17 @@ public class VentanaMirar extends JFrame{
 	protected JScrollPane scrpTabla;
 
 	public String[] prepararParaLista(RetoDTO r) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaIni = sdf.format(r.getFechaIni());
+		String fechaFin = sdf.format(r.getFechaFin());
 		if(r.getTiempo() == 0) {
-			String[] preparado = {r.getNombreReto(), r.getFechaIni(), r.getFechaFin(), String.valueOf(r.getDistancia()), "null", r.getDeporte()};
+			String[] preparado = {r.getNombreReto(), fechaIni, fechaFin, String.valueOf(r.getDistancia()), "null", r.getDeporte()};
 			return preparado;
 		} else if(r.getDistancia() == 0) {
-			String[] preparado = {r.getNombreReto(), r.getFechaIni(), r.getFechaFin(), "null", String.valueOf(r.getTiempo()), r.getDeporte()};
+			String[] preparado = {r.getNombreReto(), fechaIni, fechaFin, "null", String.valueOf(r.getTiempo()), r.getDeporte()};
 			return preparado;
 		} else {
-			String[] preparado = {r.getNombreReto(), r.getFechaIni(), r.getFechaFin(), String.valueOf(r.getDistancia()), String.valueOf(r.getTiempo()), r.getDeporte()};
+			String[] preparado = {r.getNombreReto(), fechaIni, fechaFin, String.valueOf(r.getDistancia()), String.valueOf(r.getTiempo()), r.getDeporte()};
 			return preparado;
 		}
 

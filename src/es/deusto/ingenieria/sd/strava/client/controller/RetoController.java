@@ -1,6 +1,7 @@
 package es.deusto.ingenieria.sd.strava.client.controller;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import es.deusto.ingenieria.sd.strava.client.remote.ServiceLocator;
@@ -17,7 +18,7 @@ public class RetoController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public RetoDTO crearReto(String nombreReto, String fechaIni, String fechaFin, float distancia, int tiempo, String deporte) {
+	public RetoDTO crearReto(String nombreReto, Date fechaIni, Date fechaFin, float distancia, int tiempo, String deporte) {
 		try {
 			this.r = this.serviceLocator.getService().crearReto(nombreReto, fechaIni, fechaFin, distancia, tiempo, deporte);	
 			return r;
