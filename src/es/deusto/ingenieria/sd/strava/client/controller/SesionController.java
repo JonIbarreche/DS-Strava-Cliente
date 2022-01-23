@@ -34,7 +34,24 @@ public class SesionController {
 			return null;
 		}
 	}
-
+	
+	public List<SesionDTO> getSesionesUsuario(String usuario){
+		try {
+			return this.serviceLocator.getService().getSesionesUsuario(usuario);
+		} catch (Exception e) {
+			System.out.println("no se pueden obtener las sesiones" + e);
+			return null;
+		}
+	}
+	
+	public void aceptarSesion(String usuario, String sesion) {
+		try {
+			this.serviceLocator.getService().aceptarSesion(usuario, sesion);
+		} catch (Exception e) {
+			System.out.println("no se ha podido aceptar la sesion"+e);
+		}
+	}
+	
 	public SesionDTO getUsuario() {
 		return s;
 	}

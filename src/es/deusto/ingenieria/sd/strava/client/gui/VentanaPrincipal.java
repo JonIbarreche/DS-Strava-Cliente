@@ -32,6 +32,8 @@ public class VentanaPrincipal extends JFrame{
 	private JButton verSesiones;
 	private JPanel panelBoton5;
 	private JButton verRetosActivos;
+	private JPanel panelBoton6;
+	private JButton verSesionesUsuario;
 
 
 	public VentanaPrincipal(String usuario, RegistroController regCtrl,
@@ -42,6 +44,9 @@ public class VentanaPrincipal extends JFrame{
 		List<SesionDTO> listaSesion = sesCtrl.getSesiones();
 		
 		List<RetoDTO> listaRetoActivo = retCtrl.getRetosActivos(usuario);
+		
+		List<SesionDTO> listaSesionesUsuario = sesCtrl.getSesionesUsuario(usuario);
+		
 		cp = this.getContentPane();
 		this.setTitle("Registro");
 
@@ -159,6 +164,17 @@ public class VentanaPrincipal extends JFrame{
 			}
 		});
 		panelBoton5.add(verRetosActivos);
+		
+		panelBoton6 = new JPanel();
+		panel.add(panelBoton6);
+		
+		verSesionesUsuario = new JButton("Ver tus Sesiones");
+		verSesionesUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaMirarSesionesUsuario vmsu = new VentanaMirarSesionesUsuario(usuario, listaSesionesUsuario, regCtrl, retCtrl, sesCtrl);
+			}
+		});
+		panelBoton6.add(verSesionesUsuario);
 
 		setVisible(true);
 		pack();

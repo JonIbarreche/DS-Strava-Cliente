@@ -144,7 +144,6 @@ public class VentanaMirarRetos extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(nombresRetos[comboBox.getSelectedIndex()]);
 				boolean retoMetido = retCtrl.aceptarReto(nombresRetos[comboBox.getSelectedIndex()], usuario);
 				
 				if (retoMetido) {

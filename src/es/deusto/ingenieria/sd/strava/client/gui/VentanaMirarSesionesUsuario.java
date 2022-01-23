@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,23 +22,16 @@ import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
-import javax.swing.JComboBox;
 
-public class VentanaMirarSesiones extends JFrame{
+public class VentanaMirarSesionesUsuario extends JFrame{
 	protected Container cp;
-	protected JPanel panel, panelTabla;
+	protected JPanel panel, panelBoton, panelTabla;
+	protected JButton botonVolver;
 	protected JMenuBar menuBar;
 	protected JMenu menu;
 	protected JMenuItem menuItem;
 	protected JTable tabla;
 	protected JScrollPane scrpTabla;
-	private JPanel panelOpciones;
-	private JPanel panelBoton;
-	private JButton botonVolver;
-	private JPanel panelComboBox;
-	private JComboBox comboBox;
-	private JPanel panelBotonAceptar;
-	private JButton botonAceptar;
 
 	public String[] prepararParaLista(SesionDTO s) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -51,7 +43,7 @@ public class VentanaMirarSesiones extends JFrame{
 
 	}
 
-	public VentanaMirarSesiones(String usuario, List<SesionDTO> lista, RegistroController regCtrl,
+	public VentanaMirarSesionesUsuario(String usuario, List<SesionDTO> lista, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -88,7 +80,20 @@ public class VentanaMirarSesiones extends JFrame{
 		Dimension d = tabla.getPreferredSize();
 		scrpTabla.setPreferredSize(
 		    new Dimension(d.width,tabla.getRowHeight()*12+1));
+
+		panelBoton = new JPanel();
 		panel.setLayout(new FlowLayout());
+
+		botonVolver = new JButton("Volver");
+		botonVolver.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaPrincipal k = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
+				k.setVisible(true);
+				dispose();
+			}
+		});
 
 
 		cp.add(panel);
@@ -97,52 +102,10 @@ public class VentanaMirarSesiones extends JFrame{
 		menu.add(menuItem);
 
 		panel.add(panelTabla);
-		
-		panelOpciones = new JPanel();
-		panel.add(panelOpciones);
-		panelOpciones.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		panelBoton = new JPanel();
-		panelOpciones.add(panelBoton);
-		
-		botonVolver = new JButton("Volver");
-		botonVolver.addActionListener(new ActionListener() {
+		panel.add(panelBoton);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal vp = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
-				dispose();
-
-			}
-
-		});
 		panelBoton.add(botonVolver);
-		
-		panelBotonAceptar = new JPanel();
-		panelOpciones.add(panelBotonAceptar);
-		
-	
-		
-		panelComboBox = new JPanel();
-		panelOpciones.add(panelComboBox);
-		String[] nombresSesion = new String[100];
-		int j = 0;
-		for (int i = 0; i < lista.size(); i++) {
-			nombresSesion[j] = lista.get(i).getTitulo();
-			j++;
-		}
-		comboBox = new JComboBox(nombresSesion);
-		panelComboBox.add(comboBox);
-		
-		botonAceptar = new JButton("Aceptar Sesion");
-		botonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sesCtrl.aceptarSesion(usuario, nombresSesion[comboBox.getSelectedIndex()]);
-				JOptionPane creado = new JOptionPane();
-				JOptionPane.showMessageDialog(null, "Sesion Aceptada Correctamente");
-			}
-		});
-		panelBotonAceptar.add(botonAceptar);
+
 		panelTabla.add(scrpTabla);
 
 		setVisible(true);
