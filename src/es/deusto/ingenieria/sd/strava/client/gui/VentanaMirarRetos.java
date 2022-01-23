@@ -154,7 +154,6 @@ public class VentanaMirarRetos extends JFrame{
 					JOptionPane.showMessageDialog(null, "Reto No Ha Podido Ser Aceptado");
 				}
 		
-				
 			}
 
 		});
