@@ -172,6 +172,7 @@ public class VentanaPrincipal extends JFrame{
 		verSesionesUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaMirarSesionesUsuario vmsu = new VentanaMirarSesionesUsuario(usuario, listaSesionesUsuario, regCtrl, retCtrl, sesCtrl);
+				dispose();
 			}
 		});
 		panelBoton6.add(verSesionesUsuario);
