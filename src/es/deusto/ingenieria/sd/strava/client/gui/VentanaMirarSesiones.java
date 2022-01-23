@@ -43,7 +43,7 @@ public class VentanaMirarSesiones extends JFrame{
 
 	}
 
-	public VentanaMirarSesiones(String mail, List<SesionDTO> lista, RegistroController regCtrl,
+	public VentanaMirarSesiones(String usuario, List<SesionDTO> lista, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -89,7 +89,7 @@ public class VentanaMirarSesiones extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal k = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}

@@ -34,14 +34,14 @@ public class VentanaPrincipal extends JFrame{
 	private JButton verRetosActivos;
 
 
-	public VentanaPrincipal(String mail, RegistroController regCtrl,
+	public VentanaPrincipal(String usuario, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 
 		List<RetoDTO> listaReto = retCtrl.getRetos();
 
 		List<SesionDTO> listaSesion = sesCtrl.getSesiones();
 		
-		List<RetoDTO> listaRetoActivo = retCtrl.getRetosActivos(mail);
+		List<RetoDTO> listaRetoActivo = retCtrl.getRetosActivos(usuario);
 		cp = this.getContentPane();
 		this.setTitle("Registro");
 
@@ -85,9 +85,9 @@ public class VentanaPrincipal extends JFrame{
 				if (seleccion != -1) {
 					seleccion += 1;
 					if (seleccion == 1) {
-						VentanaReto i = new VentanaReto(mail, "Distancia",regCtrl, retCtrl, sesCtrl);
+						VentanaReto i = new VentanaReto(usuario, "Distancia",regCtrl, retCtrl, sesCtrl);
 					} else if (seleccion == 2) {
-						VentanaReto i = new VentanaReto(mail, "Tiempo", regCtrl, retCtrl, sesCtrl);
+						VentanaReto i = new VentanaReto(usuario, "Tiempo", regCtrl, retCtrl, sesCtrl);
 					}
 				}
 				dispose();
@@ -101,7 +101,7 @@ public class VentanaPrincipal extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaMirarRetos l = new VentanaMirarRetos(mail, listaReto, regCtrl, retCtrl, sesCtrl);
+				VentanaMirarRetos l = new VentanaMirarRetos(usuario, listaReto, regCtrl, retCtrl, sesCtrl);
 				dispose();
 			}
 
@@ -112,7 +112,7 @@ public class VentanaPrincipal extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSesion j = new VentanaSesion(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaSesion j = new VentanaSesion(usuario, regCtrl, retCtrl, sesCtrl);
 				dispose();
 
 			}
@@ -141,7 +141,8 @@ public class VentanaPrincipal extends JFrame{
 		verSesiones = new JButton("Ver Sesiones");
 		verSesiones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaMirarSesiones vms = new VentanaMirarSesiones(mail, listaSesion, regCtrl, retCtrl, sesCtrl);
+				VentanaMirarSesiones vms = new VentanaMirarSesiones(usuario, listaSesion, regCtrl, retCtrl, sesCtrl);
+				dispose();
 			}
 		});
 		panelBoton4.add(verSesiones);
@@ -153,7 +154,8 @@ public class VentanaPrincipal extends JFrame{
 		verRetosActivos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaMirarRetosActivos vmra = new VentanaMirarRetosActivos(mail, listaRetoActivo, regCtrl, retCtrl, sesCtrl);
+				VentanaMirarRetosActivos vmra = new VentanaMirarRetosActivos(usuario, listaRetoActivo, regCtrl, retCtrl, sesCtrl);
+				dispose();
 			}
 		});
 		panelBoton5.add(verRetosActivos);

@@ -57,7 +57,7 @@ public class VentanaMirarRetosActivos extends JFrame{
 
 	}
 
-	public VentanaMirarRetosActivos(String mail, List<RetoDTO> lista, RegistroController regCtrl,
+	public VentanaMirarRetosActivos(String usuario, List<RetoDTO> lista, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -117,7 +117,7 @@ public class VentanaMirarRetosActivos extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal vp = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal vp = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
 				dispose();
 
 			}

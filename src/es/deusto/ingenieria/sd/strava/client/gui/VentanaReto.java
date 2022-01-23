@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -25,6 +29,11 @@ import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.RetoDTO;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.components.JSpinField;
+import javax.swing.JSpinner;
+import com.toedter.calendar.JMonthChooser;
+import com.toedter.calendar.JYearChooser;
 
 public class VentanaReto extends JFrame {
 
@@ -39,11 +48,15 @@ public class VentanaReto extends JFrame {
 	protected JMenuBar menuBar;
 	protected JMenu menu;
 	protected JMenuItem menuItem;
-	private JDateChooser fechaIniChooser;
-	private JDateChooser fechaFinChooser;
+	private JSpinner spinnerDiaIni;
+	private JMonthChooser monthChooserIni;
+	private JYearChooser yearChooserIni;
+	private JSpinner spinnerDiaFin;
+	private JMonthChooser monthChooserFin;
+	private JYearChooser yearChooserFin;
 
 
-	public VentanaReto(String mail, String tod, RegistroController regCtrl,
+	public VentanaReto(String usuario, String tod, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 
 		cp = this.getContentPane();
@@ -119,7 +132,7 @@ public class VentanaReto extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal k = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}
@@ -131,8 +144,35 @@ public class VentanaReto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String nombreReto = textoNomReto.getText();
-				Date fechaIni = fechaIniChooser.getDate();
-				Date fechaFin = fechaFinChooser.getDate();
+				
+				
+				int anyoIni = yearChooserIni.getValue();
+                int mesIni = monthChooserIni.getMonth();
+                int diaIni = (Integer)spinnerDiaIni.getValue();
+                String strIni = Integer.toString(diaIni) + " " + Integer.toString(mesIni) + " " + Integer.toString(anyoIni);
+                SimpleDateFormat df = new SimpleDateFormat("MM dd yyyy");
+                long tiempoIni = 0;
+                try {
+                    tiempoIni = df.parse(strIni).getTime();
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Date fechaIni = new Date(tiempoIni);
+                
+                int anyoFin = yearChooserIni.getValue();
+                int mesFin = monthChooserIni.getMonth();
+                int diaFin = (Integer)spinnerDiaIni.getValue();
+                String strFin = Integer.toString(diaFin) + " " + Integer.toString(mesFin) + " " + Integer.toString(anyoFin);
+                long tiempoFin = 0;
+                try {
+                    tiempoFin = df.parse(strFin).getTime();
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Date fechaFin = new Date(tiempoFin);
+                
 				int tiempo = 0;
 				float distancia = 0;
 				String deporte = "";
@@ -185,14 +225,27 @@ public class VentanaReto extends JFrame {
 		panelNomReto.add(textoNomReto);
 
 		panelFechaIni.add(labelFechaIni);
-
-		fechaIniChooser = new JDateChooser();
-		panelFechaIni.add(fechaIniChooser);
+		
+		SpinnerModel value = new SpinnerNumberModel(1, 0, 31, 1);
+		spinnerDiaIni = new JSpinner(value);
+		panelFechaIni.add(spinnerDiaIni);
+		
+		monthChooserIni = new JMonthChooser();
+		panelFechaIni.add(monthChooserIni);
+		
+		yearChooserIni = new JYearChooser();
+		panelFechaIni.add(yearChooserIni);
 
 		panelFechaFin.add(labelFechaFin);
-
-		fechaFinChooser = new JDateChooser();
-		panelFechaFin.add(fechaFinChooser);
+		
+		spinnerDiaFin = new JSpinner(value);
+		panelFechaFin.add(spinnerDiaFin);
+		
+		monthChooserFin = new JMonthChooser();
+		panelFechaFin.add(monthChooserFin);
+		
+		yearChooserFin = new JYearChooser();
+		panelFechaFin.add(yearChooserFin);
 
 		panelTod.add(labelTod);
 		panelTod.add(textoTod);
@@ -210,7 +263,7 @@ public class VentanaReto extends JFrame {
 
 		setVisible(true);
 		pack();
-		setSize(500,350);
+		setSize(450,269);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 

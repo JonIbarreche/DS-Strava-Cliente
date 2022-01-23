@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -17,12 +19,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import es.deusto.ingenieria.sd.strava.client.controller.RegistroController;
 import es.deusto.ingenieria.sd.strava.client.controller.RetoController;
 import es.deusto.ingenieria.sd.strava.client.controller.SesionController;
 import es.deusto.ingenieria.sd.strava.server.data.dto.SesionDTO;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JSpinner;
+import com.toedter.calendar.JMonthChooser;
+import com.toedter.calendar.JYearChooser;
 
 public class VentanaSesion extends JFrame{
 
@@ -35,10 +42,12 @@ public class VentanaSesion extends JFrame{
 	protected JMenuBar menuBar;
 	protected JMenu menu;
 	protected JMenuItem menuItem;
-	private JDateChooser dateChooser;
+	private JSpinner spinnerDia;
+	private JMonthChooser monthChooser;
+	private JYearChooser yearChooser;
 
 
-	public VentanaSesion(String mail, RegistroController regCtrl,
+	public VentanaSesion(String usuario, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 
 		cp = this.getContentPane();
@@ -107,7 +116,7 @@ public class VentanaSesion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaPrincipal k = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal k = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
 				k.setVisible(true);
 				dispose();
 			}
@@ -118,24 +127,36 @@ public class VentanaSesion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				String titulo = textoTitulo.getText();
+				
 				float distancia = Float.parseFloat(textoDistancia.getText());
-				Date fechaIni = dateChooser.getDate();
+				int anyoIni = yearChooser.getValue();
+                int mesIni = monthChooser.getMonth();
+                int diaIni = (Integer)spinnerDia.getValue();
+                String strIni = Integer.toString(diaIni) + " " + Integer.toString(mesIni) + " " + Integer.toString(anyoIni);
+                SimpleDateFormat df = new SimpleDateFormat("MM dd yyyy");
+                long tiempoIni = 0;
+                try {
+                    tiempoIni = df.parse(strIni).getTime();
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Date fechaIni = new Date(tiempoIni);
+                
 				String horaIni = textoHoraIni.getText();
 				int Duracion = Integer.parseInt(textoDuracion.getText());
 
 				SesionDTO nuevaSesion = new SesionDTO();
-				nuevaSesion.setDistancia(distancia);
-				nuevaSesion.setDuracion(Duracion);
-				nuevaSesion.setFechaIni(fechaIni);
-				nuevaSesion.setHoraIni(horaIni);
-				nuevaSesion.setTitulo(titulo);
+				
+				sesCtrl.crearSesion(titulo, distancia, fechaIni, horaIni, Duracion);
+				
 				System.out.println(nuevaSesion.toString());
 				textoTitulo.setText("");
 				textoHoraIni.setText("");
 				textoDistancia.setText("");
 				textoDuracion.setText("");
-
 				creado = new JOptionPane();
 				JOptionPane.showMessageDialog(null, "Nueva Sesion Creada Correctamente");
 
@@ -162,8 +183,15 @@ public class VentanaSesion extends JFrame{
 
 		panelFechaIni.add(labelFechaIni);
 		
-		dateChooser = new JDateChooser();
-		panelFechaIni.add(dateChooser);
+		SpinnerModel value = new SpinnerNumberModel(1, 0, 31, 1);
+		spinnerDia = new JSpinner(value);
+		panelFechaIni.add(spinnerDia);
+		
+		monthChooser = new JMonthChooser();
+		panelFechaIni.add(monthChooser);
+		
+		yearChooser = new JYearChooser();
+		panelFechaIni.add(yearChooser);
 
 		panelHoraIni.add(labelHoraIni);
 		panelHoraIni.add(textoHoraIni);

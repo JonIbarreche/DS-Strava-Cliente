@@ -58,7 +58,7 @@ public class VentanaMirarRetos extends JFrame{
 
 	}
 
-	public VentanaMirarRetos(String mail, List<RetoDTO> lista, RegistroController regCtrl,
+	public VentanaMirarRetos(String usuario, List<RetoDTO> lista, RegistroController regCtrl,
 			RetoController retCtrl, SesionController sesCtrl) {
 		cp = this.getContentPane();
 		this.setTitle("Registro");
@@ -118,7 +118,7 @@ public class VentanaMirarRetos extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal vp = new VentanaPrincipal(mail, regCtrl, retCtrl, sesCtrl);
+				VentanaPrincipal vp = new VentanaPrincipal(usuario, regCtrl, retCtrl, sesCtrl);
 				dispose();
 
 			}
@@ -144,8 +144,8 @@ public class VentanaMirarRetos extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				boolean retoMetido = retCtrl.aceptarReto(nombresRetos[comboBox.getSelectedIndex()], mail);
+				System.out.println(nombresRetos[comboBox.getSelectedIndex()]);
+				boolean retoMetido = retCtrl.aceptarReto(nombresRetos[comboBox.getSelectedIndex()], usuario);
 				
 				if (retoMetido) {
 					JOptionPane creado = new JOptionPane();

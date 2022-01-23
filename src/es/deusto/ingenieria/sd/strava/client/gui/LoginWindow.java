@@ -109,7 +109,7 @@ public class LoginWindow extends JFrame {
 				}
 				if(login) {
 					System.out.println("entro");
-					VentanaPrincipal vp = new VentanaPrincipal(txtMail.getText(),regCtrl, retCtrl, sesCtrl);
+					VentanaPrincipal vp = new VentanaPrincipal(txtMail.getText()+'#'+txtPassword.getText(),regCtrl, retCtrl, sesCtrl);
 					vp.setVisible(true);
 					dispose();
 				} else {
